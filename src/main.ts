@@ -8,15 +8,15 @@ const app = createApp(App)
 
 app.use(router)
 
-console.log('Domain for auth0 is', import.meta.env.VITE_AUTH_URL)
-
 app.use(
   createAuth0({
     domain: import.meta.env.VITE_AUTH_URL,
     clientId: import.meta.env.VITE_CLIENT_ID,
+    cacheLocation: 'localstorage',
     authorizationParams: {
-      redirect_uri: window.location.origin
-    }
+      redirect_uri: window.location.origin,
+      audience: 'https://bmm-api.brunstad.org',
+    },
   })
 );
 
